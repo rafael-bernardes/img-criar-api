@@ -46,19 +46,22 @@ public class DadosGeograficosResource implements Serializable {
 			System.out.println("ibge-api: " + resposta);
 		}
 		
-		target = client.target("http://localhost:8080/gateway-api").path("mensageria");
+		target = client.target("http://localhost:8080/gateway-api").path("mensageria-ibge");
 		target.request().post(Entity.entity(resposta, MediaType.APPLICATION_JSON));
 		
-		target = client.target("http://localhost:8080/satelite-api").path("dados-geograficos");
+		target = client.target("http://localhost:8080/gateway-api").path("dados-geograficos-satelite");
 		
 		response = target.request().get();
+
+		byte[] imagem = null;
 		
 		if(Family.SUCCESSFUL.equals(response.getStatusInfo().getFamily())) {
-			resposta = response.readEntity(String.class);
-			
-			System.out.println("satelite-api: " + resposta);
+			imagem = response.readEntity(byte[].class);
 		}
 		
-		return Response.ok().status(Status.CREATED).build();
+		target = client.target("http://localhost:8080/gateway-api").path("mensageria-satelite");
+		target.request().post(Entity.entity(imagem, MediaType.APPLICATION_JSON));
+		
+		return Response.ok().build();
 	}
 }
