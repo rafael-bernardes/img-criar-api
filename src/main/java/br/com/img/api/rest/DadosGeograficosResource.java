@@ -30,13 +30,16 @@ public class DadosGeograficosResource implements Serializable {
 	private ResteasyClient client;
 	
 	@POST
-	public Response criarDadosGeograficos() throws IllegalArgumentException, NullPointerException, IOException {
+	public Response criarDadosGeograficos(String parametros) throws IllegalArgumentException, NullPointerException, IOException {
 		client = new ResteasyClientBuilder().build();
 		
 		WebTarget target = client.target(PropertiesUtil.obterURI("gateway-api")).path("dados-geograficos-ibge");
 		
-		target = target.queryParam("nome-cidade", "Bom Destino");
-		target = target.queryParam("nome-api", "img-criar-api");
+		String nomeCidade = parametros.split("|")[0];
+		String nomeApi = parametros.split("|")[1];
+		
+		target = target.queryParam("nome-cidade", nomeCidade);
+		target = target.queryParam("nome-api", nomeApi);
 		
 		Response response = target.request().get();
 		
