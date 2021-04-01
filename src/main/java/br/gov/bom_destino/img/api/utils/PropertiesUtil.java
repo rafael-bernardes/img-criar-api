@@ -1,4 +1,4 @@
-package br.com.img.api.utils;
+package br.gov.bom_destino.img.api.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
