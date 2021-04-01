@@ -39,7 +39,7 @@ public class DadosGeograficosResource implements Serializable {
 		String nomeApi = parametros.split("|")[1];
 		
 		target = target.queryParam("nome-cidade", nomeCidade);
-		target = target.queryParam("nome-api", nomeApi);
+		target = target.queryParam("nome-cliente", nomeApi);
 		
 		Response response = target.request().get();
 		
@@ -51,10 +51,10 @@ public class DadosGeograficosResource implements Serializable {
 			System.out.println("ibge-api: " + resposta);
 		}
 		
-		target = client.target(PropertiesUtil.obterURI("gateway-api")).path("mensageria-ibge").queryParam("nome-api", "img-criar-api");
+		target = client.target(PropertiesUtil.obterURI("gateway-api")).path("mensageria-ibge").queryParam("nome-cliente", "img-criar-api");
 		target.request().post(Entity.entity(resposta, MediaType.APPLICATION_JSON));
 		
-		target = client.target(PropertiesUtil.obterURI("gateway-api")).path("dados-geograficos-satelite").queryParam("nome-api", "img-criar-api");
+		target = client.target(PropertiesUtil.obterURI("gateway-api")).path("dados-geograficos-satelite").queryParam("nome-cliente", "img-criar-api");
 		
 		response = target.request().get();
 
@@ -64,7 +64,7 @@ public class DadosGeograficosResource implements Serializable {
 			imagem = response.readEntity(byte[].class);
 		}
 		
-		target = client.target(PropertiesUtil.obterURI("gateway-api")).path("mensageria-satelite").queryParam("nome-api", "img-criar-api");
+		target = client.target(PropertiesUtil.obterURI("gateway-api")).path("mensageria-satelite").queryParam("nome-cliente", "img-criar-api");
 		target.request().post(Entity.entity(imagem, MediaType.APPLICATION_JSON));
 		
 		return Response.ok().build();
