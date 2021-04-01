@@ -1,4 +1,4 @@
-package br.gov.bom_destino.img.api.rest;
+package br.gov.bom_destino.img_criar_api.rest;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response.Status.Family;
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
 
-import br.gov.bom_destino.img.api.utils.PropertiesUtil;
+import br.gov.bom_destino.img_criar_api.utils.PropertiesUtil;
 
 @Path("dados-geograficos")
 @Consumes(MediaType.APPLICATION_JSON)
