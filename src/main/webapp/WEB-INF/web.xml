@@ -8,7 +8,7 @@
   	<filter-class>org.jboss.resteasy.plugins.server.servlet.FilterDispatcher</filter-class>
   	<init-param>
   		<param-name>javax.ws.rs.Application</param-name>
-  		<param-value>br.com.img.api.rest.Service</param-value>
+  		<param-value>br.gov.bom_destino.img_criar_api.rest.Service</param-value>
   	</init-param>
   </filter>
   <filter-mapping>
